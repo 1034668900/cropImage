@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cropImage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .previewArea {
+            width: 50%;
+            height: 300px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+
+        .imgArea {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        .preview {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 9;
+        }
+      
+        .shadowBox{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99;
+            background-color: rgba(0,0,0,.5);
+        }
+
+        .select {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            border: 1px solid #fff;
+            display: none;
+            cursor: move;
+            z-index: 9999;
+        }
+        .selectCVS{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: move;
+            z-index: 999;
+        }
+
+        .select div {
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            position: absolute;
+        }
+
+        .select div:hover {
+            cursor: move;
+        }
+        .imgBox{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .imgBox span{
+            color:#9fa9af;
+            margin-top: 15px;
+            font-size: small;
+        }
+        .angleLT {
+            top: 0;
+            left: 0;
+            transform: translate(-100%, -100%);
+        }
+
+        .angleRT {
+            top: 0;
+            right: 0;
+            transform: translate(100%, -100%);
+        }
+
+        .angleLB {
+            bottom: 0;
+            left: 0;
+            transform: translate(-100%, 100%);
+        }
+
+        .angleRB {
+            bottom: 0;
+            right: 0;
+            transform: translate(100%, 100%);
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid #181818;
+        }
+
+        .no-caret {
+            caret-color: transparent;
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE10+/Edge */
+            user-select: none;
+            /* Standard */
+        }
+    </style>
+</head>
+
+<body class="no-caret">
+    <input type="file">
+    <div class="previewArea no-caret">
+        <!-- 预览区域 -->
+        <div class="imgArea no-caret">
+            <!-- 预览图 -->
+            <img draggable="false" class="preview" />
+            <!-- 阴影盒 -->
+            <div class="shadowBox">'</div>
+            <!-- 裁剪框 -->
+            <div class="select ">
+                <div class="angleLT"></div>
+                <div class="angleRT"></div>
+                <div class="angleLB"></div>
+                <div class="angleRB"></div>
+            <!-- 预览图显示高亮部分 -->
+            <canvas class="selectCVS"></canvas>
+            </div>
+        </div>
+        <div class="imgBox">
+            <canvas draggable="false" class="avatar no-caret"></canvas>
+            <span>预览头像</span>
+        </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
